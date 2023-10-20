@@ -69,7 +69,7 @@ export default function App() {
     <View style={styles.container}>
       <View style={styles.city}>
         <Text style={styles.cityName}>{city}</Text>
-        <Text style={styles.streetName}>{street}어디?</Text>
+        <Text style={styles.streetName}>{street}</Text>
       </View>
       <View style={styles.currentDate}>
         <Text style={styles.dateText}>{getWholeDate()}</Text>

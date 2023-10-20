@@ -31,6 +31,12 @@
         "projectId": "2e5fede0-e27f-4ac5-9493-a03e427ff887"
       }
     },
-    "owner": "wsj23jack"
+    "owner": "wsj23jack",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/2e5fede0-e27f-4ac5-9493-a03e427ff887"
+    }
   }
 }
