@@ -7,7 +7,7 @@ import * as Location from "expo-location";
 const API_KEY = "484e6de2b25f6cb8d6a293273b4d27d3";
 
 export default function App() {
-  const [city, setCity] = useState("Loading...");
+  const [city, setCity] = useState("Finding...");
   const [street, setStreet] = useState("");
   const [current, setCurrent] = useState({});
   const [days, setDays] = useState([]);
@@ -42,6 +42,15 @@ export default function App() {
     }
   };
 
+  const getWholeDate = () => {
+    let dateObj = new Date();
+    let month = dateObj.getMonth() + 1;
+    let date = dateObj.getDate();
+    let day = dateObj.getDay();
+    let dayArr = ["일", "월", "화", "수", "목", "금", "토"];
+    return `${month}월 ${date}일 ${dayArr[day]}요일`;
+  };
+
   const getDate = (dt_txt) => {
     let dateObj = new Date(dt_txt + "Z");
     return dateObj.getDate();
@@ -60,7 +69,10 @@ export default function App() {
     <View style={styles.container}>
       <View style={styles.city}>
         <Text style={styles.cityName}>{city}</Text>
-        <Text style={styles.streetName}>{street}</Text>
+        <Text style={styles.streetName}>{street}어디?</Text>
+      </View>
+      <View style={styles.currentDate}>
+        <Text style={styles.dateText}>{getWholeDate()}</Text>
       </View>
       <View style={styles.current}>
         {!current.main ? (
@@ -68,24 +80,26 @@ export default function App() {
             <ActivityIndicator color="white" size="large" />
           </View>
         ) : (
-          <View style={styles.currentDay}>
-            <Text style={styles.time}>현재 기온 :</Text>
-            <Text style={styles.temp}>
-              {parseFloat(current.main.temp).toFixed(1)}
-              <Text style={styles.description}>°C</Text>
-            </Text>
-            <Text style={styles.tempSmall}>습도 {current.main.humidity}%</Text>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Text style={styles.description}>{current.weather[0].main}</Text>
-              <Image source={{ uri: `https://openweathermap.org/img/wn/${current.weather[0].icon}.png` }} style={styles.weatherIcon} />
+          <>
+            <View style={styles.currentDay}>
+              <Text style={styles.time}>현재 기온 :</Text>
+              <Text style={styles.temp}>
+                {parseFloat(current.main.temp).toFixed(1)}
+                <Text style={styles.description}>°C</Text>
+              </Text>
+              <Text style={styles.tempSmall}>습도 {current.main.humidity}%</Text>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Text style={styles.description}>{current.weather[0].main}</Text>
+                <Image source={{ uri: `https://openweathermap.org/img/wn/${current.weather[0].icon}.png` }} style={styles.weatherIcon} />
+              </View>
+              <Text style={styles.tinyText}>{current.weather[0].description}</Text>
             </View>
-            <Text style={styles.tinyText}>{current.weather[0].description}</Text>
-          </View>
+          </>
         )}
       </View>
       <ScrollView horizontal style={styles.forecast}>
         {days.length === 0 ? (
-          <View style={styles.day}>
+          <View style={styles.forecast}>
             <ActivityIndicator color="white" size="large" />
           </View>
         ) : (

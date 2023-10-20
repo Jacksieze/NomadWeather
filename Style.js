@@ -6,15 +6,17 @@ export const styles = StyleSheet.create({
     backgroundColor: "orange",
     paddingHorizontal: 10,
   },
+
   city: {
-    flex: 0.8,
+    flex: 0.5,
     justifyContent: "center",
     alignItems: "center",
+    marginTop: 20,
     borderBottomWidth: 3,
     borderBottomColor: "#fff",
   },
   cityName: {
-    fontSize: 40,
+    fontSize: 36,
     fontWeight: "700",
     color: "white",
   },
@@ -23,18 +25,27 @@ export const styles = StyleSheet.create({
     fontWeight: "500",
     color: "white",
   },
+
+  currentDate: {
+    marginTop: 20,
+  },
+  dateText: {
+    fontSize: 24,
+    color: "white",
+  },
+
   current: {
-    flex: 1.3,
+    flex: 1.2,
     justifyContent: "center",
     borderBottomWidth: 3,
     borderBottomColor: "#fff",
   },
+  currentDay: {
+    alignItems: "center",
+  },
   forecast: {
     flex: 1,
     marginTop: 20,
-  },
-  currentDay: {
-    alignItems: "center",
   },
   days: {
     alignItems: "center",

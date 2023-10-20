@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "NomadWeather",
-    "slug": "NomadWeather",
+    "slug": "nomadweather",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "2e5fede0-e27f-4ac5-9493-a03e427ff887"
+      }
+    },
+    "owner": "wsj23jack"
   }
 }
