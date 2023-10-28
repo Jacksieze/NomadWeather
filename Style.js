@@ -28,6 +28,7 @@ export const styles = StyleSheet.create({
 
   currentDate: {
     marginTop: 20,
+    marginLeft: 10,
   },
   dateText: {
     fontSize: 24,
@@ -41,22 +42,34 @@ export const styles = StyleSheet.create({
     borderBottomColor: "#fff",
   },
   currentDay: {
-    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginHorizontal: 20,
   },
+  sideView: {
+    justifyContent: "center",
+  },
+  sideViewText: {
+    fontSize: 18,
+    fontWeight: "700",
+    color: "white",
+  },
+
   forecast: {
     flex: 1,
-    marginTop: 20,
+    marginVertical: 20,
   },
   days: {
     alignItems: "center",
     justifyContent: "center",
-    height: 140,
+    height: 160,
     borderLeftWidth: 1,
     borderLeftColor: "white",
   },
   time: {
     marginTop: 10,
     fontSize: 24,
+    fontWeight: "700",
     color: "white",
   },
   weatherIcon: {
@@ -69,7 +82,7 @@ export const styles = StyleSheet.create({
     color: "white",
   },
   tempSmall: {
-    fontSize: 16,
+    fontSize: 18,
     color: "white",
   },
   description: {

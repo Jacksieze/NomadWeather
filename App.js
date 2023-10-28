@@ -1,8 +1,10 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
 import { styles } from "./Style";
-import { Text, View, Image, ScrollView, ActivityIndicator } from "react-native";
+import { Text, View, Image, ScrollView, ActivityIndicator, RefreshControl } from "react-native";
 import * as Location from "expo-location";
+
+import { FadeInLeft, FadeInRight } from "./components/AnimatedCurrent";
 
 const API_KEY = "484e6de2b25f6cb8d6a293273b4d27d3";
 
@@ -12,6 +14,12 @@ export default function App() {
   const [current, setCurrent] = useState({});
   const [days, setDays] = useState([]);
   const [ok, setOk] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    setTimeout(() => setRefreshing(false), 2000);
+  };
 
   const getWeather = async () => {
     try {
@@ -51,6 +59,13 @@ export default function App() {
     return `${month}월 ${date}일 ${dayArr[day]}요일`;
   };
 
+  const getUpdatedTime = () => {
+    let dateObj = new Date();
+    let hours = dateObj.getHours();
+    let minutes = dateObj.getMinutes();
+    return `${hours}시 ${minutes}분`;
+  };
+
   const getDate = (dt_txt) => {
     let dateObj = new Date(dt_txt + "Z");
     return dateObj.getDate();
@@ -66,13 +81,16 @@ export default function App() {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <ScrollView
+      refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+      contentContainerStyle={styles.container}>
       <View style={styles.city}>
         <Text style={styles.cityName}>{city}</Text>
         <Text style={styles.streetName}>{street}</Text>
       </View>
       <View style={styles.currentDate}>
         <Text style={styles.dateText}>{getWholeDate()}</Text>
+        <Text style={{ fontSize: 14, color: "white" }}>{getUpdatedTime()} updated</Text>
       </View>
       <View style={styles.current}>
         {!current.main ? (
@@ -82,17 +100,8 @@ export default function App() {
         ) : (
           <>
             <View style={styles.currentDay}>
-              <Text style={styles.time}>현재 기온 :</Text>
-              <Text style={styles.temp}>
-                {parseFloat(current.main.temp).toFixed(1)}
-                <Text style={styles.description}>°C</Text>
-              </Text>
-              <Text style={styles.tempSmall}>습도 {current.main.humidity}%</Text>
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Text style={styles.description}>{current.weather[0].main}</Text>
-                <Image source={{ uri: `https://openweathermap.org/img/wn/${current.weather[0].icon}.png` }} style={styles.weatherIcon} />
-              </View>
-              <Text style={styles.tinyText}>{current.weather[0].description}</Text>
+              <FadeInLeft current={current} />
+              <FadeInRight current={current} />
             </View>
           </>
         )}
@@ -111,7 +120,10 @@ export default function App() {
               <View key={index} style={styles.days}>
                 <Text style={styles.tempSmall}>{date}일</Text>
                 <Text style={styles.tempSmall}>{hours}시</Text>
-                <Image source={{ uri: `https://openweathermap.org/img/wn/${day.weather[0].icon}.png` }} style={styles.weatherIcon} />
+                <Image
+                  source={{ uri: `https://openweathermap.org/img/wn/${day.weather[0].icon}.png` }}
+                  style={styles.weatherIcon}
+                />
                 <Text style={styles.tempSmall}>
                   {parseFloat(day.main.temp).toFixed(0)}
                   <Text style={styles.descriptionSmall}>°C</Text>
@@ -123,6 +135,6 @@ export default function App() {
         )}
       </ScrollView>
       <StatusBar style="auto" />
-    </View>
+    </ScrollView>
   );
 }
