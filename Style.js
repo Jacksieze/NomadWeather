@@ -1,10 +1,14 @@
 import { StyleSheet } from "react-native";
 
+const textShadow = 14;
+
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "orange",
-    paddingHorizontal: 10,
+  },
+  backgroundImage: {
+    flex: 3,
+    justifyContent: "center",
   },
 
   city: {
@@ -19,20 +23,24 @@ export const styles = StyleSheet.create({
     fontSize: 36,
     fontWeight: "700",
     color: "white",
+    textShadowRadius: textShadow,
   },
   streetName: {
     fontSize: 24,
     fontWeight: "500",
     color: "white",
+    textShadowRadius: textShadow,
   },
 
   currentDate: {
     marginTop: 20,
     marginLeft: 10,
+    textShadowRadius: textShadow,
   },
   dateText: {
     fontSize: 24,
     color: "white",
+    textShadowRadius: textShadow,
   },
 
   current: {
@@ -53,6 +61,7 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "700",
     color: "white",
+    textShadowRadius: textShadow,
   },
 
   forecast: {
@@ -71,6 +80,7 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "700",
     color: "white",
+    textShadowRadius: textShadow,
   },
   weatherIcon: {
     width: 50,
@@ -80,22 +90,27 @@ export const styles = StyleSheet.create({
     fontSize: 60,
     fontWeight: "600",
     color: "white",
+    textShadowRadius: textShadow,
   },
   tempSmall: {
-    fontSize: 18,
+    fontSize: 16,
     color: "white",
+    textShadowRadius: textShadow,
   },
   description: {
     marginTop: -10,
     fontSize: 36,
     color: "white",
+    textShadowRadius: textShadow,
   },
   descriptionSmall: {
     fontSize: 12,
     color: "white",
+    textShadowRadius: textShadow,
   },
   tinyText: {
-    fontSize: 24,
+    fontSize: 22,
     color: "white",
+    textShadowRadius: textShadow,
   },
 });
