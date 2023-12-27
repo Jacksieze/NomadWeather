@@ -58,7 +58,7 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
   },
   sideViewText: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "700",
     color: "white",
     textShadowRadius: textShadow,
@@ -66,14 +66,18 @@ export const styles = StyleSheet.create({
 
   forecast: {
     flex: 1,
-    marginVertical: 20,
+    marginVertical: 10,
+    marginHorizontal: 10,
+    backgroundColor: "rgba(255, 255, 255, 0.07)",
+    borderRadius: 20,
   },
   days: {
+    marginVertical: 20,
     alignItems: "center",
     justifyContent: "center",
     height: 160,
-    borderLeftWidth: 1,
-    borderLeftColor: "white",
+    borderRightWidth: 0.5,
+    borderRightColor: "white",
   },
   time: {
     marginTop: 10,
@@ -87,7 +91,7 @@ export const styles = StyleSheet.create({
     height: 50,
   },
   temp: {
-    fontSize: 60,
+    fontSize: 48,
     fontWeight: "600",
     color: "white",
     textShadowRadius: textShadow,
@@ -99,7 +103,7 @@ export const styles = StyleSheet.create({
   },
   description: {
     marginTop: -10,
-    fontSize: 36,
+    fontSize: 32,
     color: "white",
     textShadowRadius: textShadow,
   },
